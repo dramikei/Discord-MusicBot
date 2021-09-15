@@ -179,7 +179,11 @@ class DiscordMusicBot extends Client {
           .setColor("RANDOM")
           .setTimestamp();
         client.channels.cache.get(player.textChannel).send(QueueEmbed);
-        if (!this.botconfig["24/7"]) player.destroy();
+        if (!this.botconfig["24/7"]) {
+          this.setTimeout(() => {
+            player.destroy();
+          }, (1000 * 60 * 5))
+        }
       });
   }
 
@@ -249,7 +253,7 @@ class DiscordMusicBot extends Client {
   build() {
     this.login(this.botconfig.Token);
     if(this.botconfig.ExpressServer){
-      this.http.listen(process.env.PORT || this.botconfig.Port, () => this.log("Web Server has been started"));
+      this.http.listen(process.env.PORT || this.botconfig.Port, () => this.log(`Web Server has been started at port: ${process.env.PORT || this.botconfig.Port}`));
     }
   }
 
