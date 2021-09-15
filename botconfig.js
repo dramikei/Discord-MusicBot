@@ -1,16 +1,16 @@
 module.exports = {
   Admins: ["UserID", "UserID"], //Admins of the bot
-  ExpressServer: true,//If you wanted to make the website run or not
+  ExpressServer: !!(process.env.WEBUI_ENABLE || true),//If you wanted to make the website run or not
   DefaultPrefix: process.env.Prefix || ">", //Default prefix, Server Admins can change the prefix
-  Port: 3000, //Which port website gonna be hosted
+  Port: process.env.WEBUI_PORT || 3000, //Which port website gonna be hosted
   SupportServer: "https://discord.gg/sbySMS7m3v", //Support Server Link
   Token: process.env.Token || "", //Discord Bot Token
   ClientID: process.env.Discord_ClientID || "", //Discord Client ID
   ClientSecret: process.env.Discord_ClientSecret || "", //Discord Client Secret
   Scopes: ["identify", "guilds", "applications.commands"], //Discord OAuth2 Scopes
   CallbackURL: "/api/callback", //Discord OAuth2 Callback URL
-  "24/7": false, //If you want the bot to be stay in the vc 24/7
-  CookieSecret: "Pikachu is cute", //A Secret like a password
+  "24/7": !!(process.env.PERSISTENT_VC || false), //If you want the bot to be stay in the vc 24/7
+  CookieSecret: process.env.COOKIE_SECRET || "Pikachu is cute", //A Secret like a password
   IconURL:
     "https://raw.githubusercontent.com/SudhanPlayz/Discord-MusicBot/master/assets/logo.gif", //URL of all embed author icons | Dont edit unless you dont need that Music CD Spining
   Permissions: 2205280576, //Bot Inviting Permissions
@@ -19,10 +19,10 @@ module.exports = {
   //Lavalink
    Lavalink: {
     id: "Main",
-    host: "(host name or IP)",
-    port: (port),
-    pass: "(password)", 
-    secure: false, // Set this to true if you're self-hosting lavalink on replit.
+    host: process.env.LAVALINK_HOST,
+    port: process.env.LAVALINK_PORT,
+    pass: process.env.LAVALINK_PASS, 
+    secure: !!(process.env.LAVALINK_SECURE || false), // Set this to true if you're self-hosting lavalink on replit.
   },
 
 
