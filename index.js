@@ -1,3 +1,4 @@
+require("dotenv").config();
 const DiscordMusicBot = require("./structures/DiscordMusicBot");
 const client = new DiscordMusicBot();
 
